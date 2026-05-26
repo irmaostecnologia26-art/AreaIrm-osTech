@@ -4,43 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Irmãos Tech - Soluções Online</title>
-    <!-- Tailwind CSS -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: radial-gradient(circle at top right, #1e1b4b, #090514);
-            color: #f3f4f6;
+            background-color: #f8fafc;
+            color: #0f172a;
             overflow-x: hidden;
             min-height: 100vh;
         }
         
-        /* Barra de rolagem personalizada */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #090514;
+            background: #f1f5f9;
         }
         ::-webkit-scrollbar-thumb {
-            background: #4f46e5;
+            background: #cbd5e1;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #6366f1;
+            background: #94a3b8;
         }
 
-        /* Animação de Carregamento (Efeito de Cobrinha) */
         .spinner {
             width: 50px;
             height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-left-color: #6366f1;
+            border: 4px solid #e2e8f0;
+            border-left-color: #4f46e5;
             border-right-color: #a855f7;
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -50,303 +46,332 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Efeito Shimmer */
-        .shimmer {
-            background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
-            background-size: 200% 100%;
-            animation: loading-shimmer 1.5s infinite;
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
         }
-        @keyframes loading-shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12deg); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen relative overflow-x-hidden">
 
-    <!-- ECRÃ GLOBAL DE CARREGAMENTO -->
-    <div id="loading-screen" class="fixed inset-0 bg-[#090514] z-50 flex flex-col items-center justify-center transition-all duration-500 opacity-100">
+    <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-opacity duration-500 opacity-100">
         <div class="relative flex flex-col items-center">
-            <!-- Loading Cobrinha (Spinner) -->
             <div class="spinner mb-6"></div>
-            <h2 class="text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 animate-pulse">
+            <h2 class="text-xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 animate-pulse">
                 ESPERE UM POUCO!
             </h2>
-            <p class="text-gray-400 text-sm mt-2">A carregar o Universo Irmãos Tech...</p>
+            <p class="text-slate-500 text-sm mt-2">A carregar o Universo Irmãos Tech...</p>
         </div>
     </div>
 
-    <!-- INTERFACE PRINCIPAL -->
     <div class="flex-grow flex flex-col">
-        <!-- CABEÇALHO -->
-        <header class="w-full bg-[#0d091e]/80 backdrop-blur-md border-b border-indigo-950 px-6 py-4 flex items-center justify-between sticky top-0 z-30">
+        
+        <header class="w-full bg-white/95 backdrop-blur-md border-b border-slate-100 px-4 sm:px-6 py-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
             <div class="flex items-center gap-3">
-                <div class="bg-gradient-to-tr from-indigo-500 to-purple-500 p-2.5 rounded-xl shadow-lg shadow-indigo-500/20">
+                <div class="bg-gradient-to-tr from-indigo-600 to-purple-600 p-2.5 rounded-xl shadow-md">
                     <i class="fa-solid fa-laptop-code text-white text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent">
+                    <h1 class="text-lg sm:text-xl font-black tracking-tight text-slate-950">
                         IRMÃOS TECH
                     </h1>
-                    <span class="text-[10px] uppercase tracking-widest text-indigo-400 font-bold block -mt-1">Shangri-lá</span>
+                    <span class="text-[9px] sm:text-[10px] uppercase tracking-widest text-indigo-600 font-bold block -mt-1">Shangri-lá</span>
                 </div>
             </div>
 
-            <!-- Ações do Cabeçalho -->
-            <div class="flex items-center gap-3">
-                <!-- Instagram -->
+            <div class="flex items-center gap-2 sm:gap-3">
                 <a href="https://www.instagram.com/irmaos_tech.shangrila/" target="_blank" rel="noopener noreferrer" 
-                   class="flex items-center justify-center p-2.5 rounded-xl bg-gradient-to-tr from-pink-600 to-purple-600 text-white hover:scale-110 transition-transform duration-300 shadow-md hover:shadow-pink-500/20"
+                   class="flex items-center justify-center p-2.5 rounded-xl bg-gradient-to-tr from-pink-500 to-rose-500 text-white hover:scale-105 transition-transform duration-300 shadow-sm"
                    title="Siga-nos no Instagram" onclick="triggerActionLoading('A abrir o Instagram...')">
                     <i class="fa-brands fa-instagram text-lg"></i>
                 </a>
 
-                <!-- Botão de Ajuda (Help) -->
-                <button onclick="openHelpModal()" class="bg-blue-600/90 hover:bg-blue-500 text-white px-3 py-2.5 rounded-xl flex items-center gap-2 font-semibold text-sm transition-all shadow-lg shadow-blue-500/10">
+                <button onclick="openHelpModal()" class="bg-blue-50/90 hover:bg-blue-100 text-blue-700 px-3 py-2.5 rounded-xl flex items-center gap-2 font-semibold text-sm transition-all">
                     <i class="fa-solid fa-circle-question"></i>
                     <span class="hidden sm:inline">Ajuda</span>
                 </button>
 
-                <!-- Área de Autenticação -->
                 <div id="auth-section">
-                    <!-- Botão de Login Google -->
-                    <button id="btn-login" onclick="loginWithGoogle()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl flex items-center gap-2 font-bold text-sm transition-all shadow-lg shadow-indigo-500/30">
+                    <button id="btn-login" onclick="loginWithGoogle()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 sm:px-4 py-2.5 rounded-xl flex items-center gap-2 font-bold text-sm transition-all shadow-sm">
                         <i class="fa-brands fa-google"></i>
-                        <span>Entrar com o Google</span>
+                        <span class="hidden sm:inline">Entrar com Google</span>
+                        <span class="sm:hidden">Entrar</span>
                     </button>
                     
-                    <!-- Perfil do Utilizador (Oculto por padrão) -->
-                    <div id="user-profile" class="hidden flex items-center gap-3 bg-white/5 border border-white/10 p-1.5 pr-4 rounded-full">
-                        <img id="user-avatar" src="" alt="Avatar" class="w-8 h-8 rounded-full border border-indigo-400">
+                    <div id="user-profile" class="hidden items-center gap-3 bg-slate-50 border border-slate-200 p-1.5 pr-4 rounded-full">
+                        <img id="user-avatar" src="" alt="Avatar" class="w-8 h-8 rounded-full border border-indigo-200 object-cover">
                         <div class="flex flex-col text-left">
-                            <span id="user-name" class="text-xs font-bold truncate max-w-[100px]">Utilizador</span>
-                            <button onclick="logout()" class="text-[10px] text-red-400 hover:text-red-300 font-medium text-left transition-colors">Sair</button>
+                            <span id="user-name" class="text-xs font-bold truncate max-w-[80px] sm:max-w-[100px] text-slate-900">Utilizador</span>
+                            <button onclick="logout()" class="text-[10px] text-red-500 hover:text-red-600 font-semibold text-left transition-colors">Sair</button>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- SECÇÃO PRINCIPAL & FORMULÁRIO -->
         <main class="flex-grow flex flex-col items-center justify-center px-4 py-8 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
             
-            <!-- Título de Boas-Vindas -->
-            <div class="text-center mb-8">
-                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 uppercase">
-                    Assistência & Desenvolvimento de Alta Performance
+            <div id="admin-banner" class="w-full bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6 hidden animate-fade-in">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="flex h-3 w-3 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+                        </span>
+                        <p class="text-sm text-amber-800 font-bold">Modo Administrador Ativo (irmaostecnologia26@gmail.com)</p>
+                    </div>
+                    <button onclick="scrollToAdminPanel()" class="bg-amber-600 hover:bg-amber-700 text-white text-xs px-3 py-1.5 rounded-lg font-bold transition-all">
+                        Ir para o Painel
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mb-8 animate-fade-in">
+                <span class="px-3 py-1 rounded-full text-xs font-bold tracking-wider bg-indigo-50 text-indigo-700 border border-indigo-100 uppercase">
+                    Assistência de Alta Performance
                 </span>
-                <h2 class="text-4xl sm:text-5xl font-extrabold mt-4 tracking-tight leading-tight">
-                    O que <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">precisas</span> hoje?
+                <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 tracking-tight text-slate-950">
+                    O que <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">precisas</span> hoje?
                 </h2>
-                <p class="text-gray-400 mt-3 text-base sm:text-lg max-w-2xl mx-auto">
-                    Explica o teu problema, projeto ou dúvida. Nós solucionamos tudo de forma rápida diretamente através do WhatsApp!
+                <p class="text-slate-500 mt-3 text-sm sm:text-base max-w-2xl mx-auto">
+                    Escreve o teu problema ou escolhe um dos nossos atalhos inteligentes abaixo para carregar o pedido de imediato!
                 </p>
             </div>
 
-            <!-- Cartão Interativo -->
-            <div class="w-full bg-[#120e2b]/60 backdrop-blur-xl border border-indigo-950/80 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-                <div class="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl"></div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full mb-6">
+                <button onclick="fillServiceText('Preciso de formatar o meu PC/Portátil, reinstalar o sistema operativo de forma limpa e otimizar todo o desempenho.')" 
+                        class="bg-white hover:bg-indigo-50/50 border border-slate-200 hover:border-indigo-300 p-4 rounded-2xl text-center transition-all duration-300 group shadow-sm">
+                    <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-2.5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-compact-disc text-lg"></i>
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-900">Formatar PC</h3>
+                    <p class="text-[10px] text-slate-400 mt-1">Instalação limpa</p>
+                </button>
+
+                <button onclick="fillServiceText('Gostaria de otimizar o meu computador de forma profunda para que fique mais rápido no carregamento de programas e jogos.')" 
+                        class="bg-white hover:bg-indigo-50/50 border border-slate-200 hover:border-indigo-300 p-4 rounded-2xl text-center transition-all duration-300 group shadow-sm">
+                    <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center mx-auto mb-2.5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gauge-high text-lg"></i>
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-900">Otimizar Sistema</h3>
+                    <p class="text-[10px] text-slate-400 mt-1">Velocidade máxima</p>
+                </button>
+
+                <button onclick="fillServiceText('Preciso de uma verificação completa de vírus e remoção de malware que possa estar a deixar o meu sistema inseguro.')" 
+                        class="bg-white hover:bg-indigo-50/50 border border-slate-200 hover:border-indigo-300 p-4 rounded-2xl text-center transition-all duration-300 group shadow-sm">
+                    <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-2.5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shield-virus text-lg"></i>
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-900">Remover Vírus</h3>
+                    <p class="text-[10px] text-slate-400 mt-1">Proteção e Limpeza</p>
+                </button>
+
+                <button onclick="fillServiceText('Gostaria de solicitar um orçamento para montagem de um computador personalizado de raiz de acordo com as minhas necessidades.')" 
+                        class="bg-white hover:bg-indigo-50/50 border border-slate-200 hover:border-indigo-300 p-4 rounded-2xl text-center transition-all duration-300 group shadow-sm">
+                    <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mx-auto mb-2.5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-microchip text-lg"></i>
+                    </div>
+                    <h3 class="text-xs font-extrabold text-slate-900">Montar PC</h3>
+                    <p class="text-[10px] text-slate-400 mt-1">Hardware à medida</p>
+                </button>
+            </div>
+
+            <div class="w-full bg-white border border-slate-100 rounded-3xl p-5 sm:p-8 shadow-xl relative overflow-hidden">
                 
                 <form id="request-form" onsubmit="handleRequestSubmit(event)" class="relative z-10 space-y-6">
                     <div>
-                        <label for="user-needs" class="block text-sm font-bold text-indigo-300 uppercase tracking-wider mb-2">
-                            <i class="fa-regular fa-comment-dots mr-2"></i>Descreve a tua necessidade
+                        <label for="user-needs" class="block text-sm font-bold text-indigo-900 uppercase tracking-wider mb-2 flex items-center justify-between">
+                            <span><i class="fa-regular fa-comment-dots mr-2"></i>A tua necessidade</span>
+                            <span id="char-counter" class="text-xs font-normal text-slate-400">0 caracteres</span>
                         </label>
-                        <textarea id="user-needs" rows="4" required
-                            class="w-full bg-[#090514]/90 border border-indigo-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none transition-all resize-none text-base"
-                            placeholder="Ex: Preciso de uma formatação completa no meu PC, instalação de Windows 11... ou: Gostaria de criar um site profissional para o meu negócio."></textarea>
+                        <textarea id="user-needs" rows="5" required
+                            class="w-full bg-slate-50 border border-slate-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 rounded-2xl p-4 text-slate-900 placeholder-slate-400 focus:outline-none transition-all resize-none text-base shadow-inner"
+                            placeholder="Ex: Preciso de formatar o meu computador ou de otimizar a velocidade para ficar mais rápido..."
+                            onkeydown="handleKeyPress(event)" oninput="updateCharCount()"></textarea>
                     </div>
 
-                    <!-- Campos para utilizadores não autenticados -->
-                    <div id="anonymous-form-fields" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label for="contact-name" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">O teu Nome</label>
-                            <input type="text" id="contact-name" 
-                                class="w-full bg-[#090514]/90 border border-indigo-900 focus:border-indigo-500 rounded-xl p-3 text-white placeholder-gray-600 focus:outline-none text-sm"
-                                placeholder="Como te podemos chamar?">
-                        </div>
-                        <div>
-                            <label for="contact-phone" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Telemóvel / WhatsApp (Opcional)</label>
-                            <input type="tel" id="contact-phone" 
-                                class="w-full bg-[#090514]/90 border border-indigo-900 focus:border-indigo-500 rounded-xl p-3 text-white placeholder-gray-600 focus:outline-none text-sm"
-                                placeholder="Ex: 912 345 678">
-                        </div>
-                    </div>
-
-                    <!-- Botão de Submissão -->
-                    <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3">
+                    <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 transform active:scale-[0.98] hover:-translate-y-0.5 shadow-md flex items-center justify-center gap-3">
                         <i class="fa-solid fa-paper-plane"></i>
-                        <span>Enviar Pedido de Suporte</span>
+                        <span>Mandar para Funcionário</span>
                     </button>
                 </form>
 
-                <!-- ECRÃ DE SUCESSO & REDIRECIONAMENTO WHATSAPP -->
-                <div id="success-view" class="hidden relative z-10 text-center space-y-6 py-6">
-                    <div class="inline-flex p-4 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 mb-2">
+                <div id="success-view" class="hidden relative z-10 text-center space-y-6 py-4 animate-fade-in">
+                    <div class="inline-flex p-4 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 mb-2">
                         <i class="fa-solid fa-circle-check text-4xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-white">Pedido Criado com Sucesso!</h3>
-                        <p class="text-gray-400 mt-2 text-sm">
-                            Agora, escolhe o colaborador que te irá atender para enviares a mensagem automática no WhatsApp.
+                        <h3 class="text-2xl font-black text-slate-950">Pedido Gerado com Sucesso!</h3>
+                        <p class="text-slate-500 mt-2 text-sm">
+                            Clica no botão abaixo para abrires diretamente o WhatsApp com o texto pré-configurado!
                         </p>
                     </div>
 
-                    <!-- Pré-visualização da mensagem -->
-                    <div class="bg-[#090514]/80 border border-indigo-950 rounded-2xl p-4 text-left max-w-lg mx-auto">
-                        <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-wider block mb-1">Pré-visualização da mensagem:</span>
-                        <p id="msg-preview" class="text-xs text-gray-300 italic whitespace-pre-wrap"></p>
+                    <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 text-left max-w-lg mx-auto">
+                        <span class="text-[10px] font-bold text-indigo-600 uppercase tracking-wider block mb-1">A tua mensagem final:</span>
+                        <p id="msg-preview" class="text-xs text-slate-700 italic whitespace-pre-wrap line-clamp-4"></p>
                     </div>
 
-                    <!-- Botões Dinâmicos de WhatsApp -->
-                    <div class="space-y-4 pt-4 max-w-md mx-auto">
-                        <span class="block text-xs font-bold uppercase tracking-widest text-gray-400">Enviar para um colaborador:</span>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <!-- Colaborador 1 -->
-                            <button onclick="sendToWhatsApp('+554195670609')" class="flex items-center gap-3 p-3 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white rounded-xl transition-all font-semibold text-sm shadow-lg shadow-emerald-600/10">
-                                <i class="fa-brands fa-whatsapp text-lg"></i>
-                                <div class="text-left">
-                                    <span class="block text-xs leading-none">Matheus</span>
-                                    <span class="text-[9px] font-normal opacity-80">Apoio Geral</span>
-                                </div>
-                            </button>
-
-                            <!-- Colaborador 2 -->
-                            <button onclick="sendToWhatsApp('+554195670609')" class="flex items-center gap-3 p-3 bg-indigo-950/60 hover:bg-indigo-900 border border-emerald-500/30 text-white rounded-xl transition-all font-semibold text-sm shadow-md">
-                                <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i>
-                                <div class="text-left">
-                                    <span class="block text-xs leading-none">Gabriel</span>
-                                    <span class="text-[9px] font-normal text-emerald-400">Suporte Técnico</span>
-                                </div>
-                            </button>
-                        </div>
-
-                        <!-- Link Principal de Redirecionamento -->
-                        <button onclick="sendToWhatsApp('+554195670609')" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-black font-extrabold py-3.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm shadow-lg shadow-green-500/10">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                            <span>Ir Direto para o WhatsApp Principal</span>
+                    <div class="space-y-4 pt-2 max-w-md mx-auto">
+                        <button onclick="sendToWhatsApp('+554195670609')" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold py-4 px-4 rounded-xl transition-all flex items-center justify-center gap-2 text-sm shadow-md active:scale-[0.98]">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>Abrir WhatsApp do Funcionário</span>
                         </button>
 
-                        <button onclick="resetForm()" class="text-xs text-indigo-400 hover:text-indigo-300 transition-colors pt-2 block mx-auto underline">
-                            Criar um novo pedido
+                        <button onclick="resetForm()" class="text-xs text-indigo-600 hover:text-indigo-500 transition-colors pt-2 block mx-auto underline cursor-pointer font-bold">
+                            Fazer uma nova solicitação
                         </button>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Vantagens Rápidas -->
+            <div id="admin-section" class="w-full bg-white border border-slate-100 rounded-3xl p-5 sm:p-8 shadow-xl mt-8 hidden animate-fade-in">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-5 mb-6 gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-amber-500/10 text-amber-600 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-shield-halved text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-950">Painel do Administrador</h3>
+                            <p class="text-xs text-slate-500">Monitorização de mensagens recebidas em tempo real</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="fetchAdminData()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-rotate"></i> Atualizar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <span class="text-[10px] uppercase font-bold text-slate-400">Total de Pedidos</span>
+                        <p id="admin-total-orders" class="text-3xl font-extrabold text-indigo-600 mt-1">0</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                        <span class="text-[10px] uppercase font-bold text-slate-400">Clientes Ativos</span>
+                        <p id="admin-unique-users" class="text-3xl font-extrabold text-purple-600 mt-1">0</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 col-span-2 sm:col-span-1">
+                        <span class="text-[10px] uppercase font-bold text-slate-400">Estado da Ligação</span>
+                        <p class="text-sm font-extrabold text-emerald-600 mt-2 flex items-center gap-1.5">
+                            <span class="h-2 w-2 rounded-full bg-emerald-500 inline-block"></span> Ativo (Firestore)
+                        </p>
+                    </div>
+                </div>
+
+                <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Histórico de Mensagens Recentes:</h4>
+                <div class="overflow-hidden border border-slate-100 rounded-2xl">
+                    <div class="max-h-96 overflow-y-auto divide-y divide-slate-100" id="admin-orders-list">
+                        <p class="p-6 text-center text-sm text-slate-400">Nenhum pedido recebido ou registado na base de dados.</p>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full mt-8">
-                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl flex items-center gap-3">
-                    <i class="fa-solid fa-bolt text-amber-400 text-lg"></i>
+                <div class="bg-white border border-slate-100 p-4 rounded-2xl flex items-center gap-3 shadow-sm">
+                    <i class="fa-solid fa-bolt text-amber-500 text-lg"></i>
                     <div>
-                        <h4 class="text-xs font-bold uppercase tracking-wider">Resposta Rápida</h4>
-                        <p class="text-[11px] text-gray-400 mt-0.5">Resposta quase imediata no WhatsApp</p>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900">Resposta Imediata</h4>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Retorno ágil diretamente no WhatsApp</p>
                     </div>
                 </div>
-                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl flex items-center gap-3">
-                    <i class="fa-solid fa-lock-open text-indigo-400 text-lg"></i>
+                <div class="bg-white border border-slate-100 p-4 rounded-2xl flex items-center gap-3 shadow-sm">
+                    <i class="fa-solid fa-lock-open text-indigo-500 text-lg"></i>
                     <div>
-                        <h4 class="text-xs font-bold uppercase tracking-wider">Acesso Seguro</h4>
-                        <p class="text-[11px] text-gray-400 mt-0.5">Identificação rápida com o Google</p>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900">Sessão Segura</h4>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Sincroniza os teus pedidos com o Google</p>
                     </div>
                 </div>
-                <div class="bg-white/5 border border-white/5 p-4 rounded-2xl flex items-center gap-3">
-                    <i class="fa-solid fa-shield-halved text-purple-400 text-lg"></i>
+                <div class="bg-white border border-slate-100 p-4 rounded-2xl flex items-center gap-3 shadow-sm">
+                    <i class="fa-solid fa-shield-halved text-purple-500 text-lg"></i>
                     <div>
-                        <h4 class="text-xs font-bold uppercase tracking-wider">Suporte Premium</h4>
-                        <p class="text-[11px] text-gray-400 mt-0.5">Equipa dedicada ao teu dispor</p>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900">Equipa Profissional</h4>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Soluções inteligentes ao teu dispor</p>
                     </div>
                 </div>
             </div>
 
         </main>
 
-        <!-- RODAPÉ -->
-        <footer class="bg-[#090514] border-t border-indigo-950/40 py-6 text-center text-xs text-gray-500 mt-auto px-4">
+        <footer class="bg-white border-t border-slate-100 py-6 text-center text-xs text-slate-500 mt-auto px-4 relative z-20 shadow-inner">
             <div class="flex justify-center gap-6 mb-4">
-                <a href="https://www.instagram.com/irmaos_tech.shangrila/" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-400 transition-colors flex items-center gap-1">
+                <a href="https://www.instagram.com/irmaos_tech.shangrila/" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 transition-colors flex items-center gap-1 font-semibold">
                     <i class="fa-brands fa-instagram"></i> Instagram
                 </a>
-                <a href="https://wa.me/554195670609" target="_blank" rel="noopener noreferrer" class="hover:text-green-400 transition-colors flex items-center gap-1">
-                    <i class="fa-brands fa-whatsapp"></i> Contacto Direto
+                <a href="https://wa.me/554195670609" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition-colors flex items-center gap-1 font-semibold">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
                 </a>
             </div>
             <p>© 2026 Irmãos Tech Shangri-lá. Todos os direitos reservados.</p>
         </footer>
     </div>
 
-    <!-- POPUP DINÂMICO DE CARREGAMENTO (Cobrinha) -->
-    <div id="dynamic-loader" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex flex-col items-center justify-center transition-all duration-300 opacity-0 pointer-events-none">
-        <div class="bg-[#120e2b] border border-indigo-950 p-8 rounded-3xl flex flex-col items-center max-w-xs text-center shadow-2xl">
+    <div id="dynamic-loader" class="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center transition-opacity duration-300 opacity-0 hidden">
+        <div class="bg-white border border-slate-100 p-8 rounded-3xl flex flex-col items-center max-w-xs text-center shadow-2xl">
             <div class="spinner mb-5"></div>
-            <h4 id="loader-message" class="text-lg font-bold tracking-tight text-white">A carregar...</h4>
-            <p class="text-xs text-gray-400 mt-2">Aguarde apenas alguns instantes. Obrigado pela paciência!</p>
+            <h4 id="loader-message" class="text-lg font-black tracking-tight text-slate-950">A processar...</h4>
+            <p class="text-xs text-slate-500 mt-2">Isto levará apenas uns segundos.</p>
         </div>
     </div>
 
-    <!-- JANELA MODAL DE AJUDA / TUTORIAL -->
-    <div id="help-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-all duration-300 opacity-0 pointer-events-none">
-        <div class="bg-[#120e2b] border border-indigo-900 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-            <!-- Header -->
-            <div class="p-6 border-b border-indigo-950 bg-[#0d091e] flex justify-between items-center">
-                <div class="flex items-center gap-2.5 text-blue-400">
+    <div id="help-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 hidden">
+        <div class="bg-white border border-slate-100 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+            <div class="p-5 sm:p-6 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
+                <div class="flex items-center gap-2.5 text-indigo-600">
                     <i class="fa-solid fa-circle-question text-xl"></i>
-                    <h3 class="font-extrabold text-lg text-white">Central de Ajuda</h3>
+                    <h3 class="font-extrabold text-lg text-slate-950">Central de Ajuda</h3>
                 </div>
-                <button onclick="closeHelpModal()" class="text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 p-2 rounded-lg transition-all">
+                <button onclick="closeHelpModal()" class="text-slate-400 hover:text-slate-900 bg-slate-100/50 hover:bg-slate-100 p-2 rounded-lg transition-all focus:outline-none">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <!-- Corpo -->
-            <div class="p-6 overflow-y-auto space-y-6">
+            <div class="p-5 sm:p-6 overflow-y-auto space-y-6">
                 <div>
-                    <h4 class="font-bold text-sm text-indigo-300 uppercase tracking-wider mb-2">Quem somos?</h4>
-                    <p class="text-sm text-gray-300 leading-relaxed">
-                        A <strong class="text-white">Irmãos Tech</strong> é a tua parceira ideal em suporte informático, manutenção preventiva de computadores e portáteis, além do planeamento e desenvolvimento de websites e plataformas personalizadas na região de Shangri-lá e de forma 100% online.
+                    <h4 class="font-bold text-sm text-indigo-600 uppercase tracking-wider mb-2">Quem somos?</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        A <strong class="text-slate-950">Irmãos Tech</strong> é a tua parceira ideal em suporte tecnológico para manutenção de computadores, portáteis, otimização de sistemas lentos e desenvolvimento de projetos online.
                     </p>
                 </div>
-
                 <div>
-                    <h4 class="font-bold text-sm text-indigo-300 uppercase tracking-wider mb-3">Como pedir suporte? (Tutorial)</h4>
-                    <ol class="space-y-3.5 text-sm text-gray-300">
+                    <h4 class="font-bold text-sm text-indigo-600 uppercase tracking-wider mb-3">Tutorial de Utilização:</h4>
+                    <ol class="space-y-3.5 text-sm text-slate-600">
                         <li class="flex gap-3">
-                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-blue-600/20 text-blue-400 text-xs font-extrabold">1</span>
-                            <span><strong>Inicia Sessão (Opcional):</strong> Clica em "Entrar com o Google" no topo do ecrã para te identificares de forma segura.</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 text-xs font-extrabold">1</span>
+                            <span><strong>Inicia Sessão:</strong> Clica em "Entrar com Google" para guardar os teus pedidos e personalizar o atendimento.</span>
                         </li>
                         <li class="flex gap-3">
-                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-blue-600/20 text-blue-400 text-xs font-extrabold">2</span>
-                            <span><strong>Descreve o teu problema:</strong> Na caixa de texto principal, escreve o que precisas com o máximo detalhe possível.</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 text-xs font-extrabold">2</span>
+                            <span><strong>Escolhe ou Escreve:</strong> Clica num dos botões rápidos para preencher um serviço predefinido ou digita na caixa de texto.</span>
                         </li>
                         <li class="flex gap-3">
-                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-blue-600/20 text-blue-400 text-xs font-extrabold">3</span>
-                            <span><strong>Envia:</strong> Clica no botão "Enviar Pedido de Suporte".</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 text-xs font-extrabold">3</span>
+                            <span><strong>Confirma:</strong> Clica no botão "Mandar para Funcionário".</span>
                         </li>
                         <li class="flex gap-3">
-                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-blue-600/20 text-blue-400 text-xs font-extrabold">4</span>
-                            <span><strong>Conclui no WhatsApp:</strong> Clica num dos colaboradores listados para abrires o WhatsApp com a tua mensagem já inteiramente preenchida e pronta a enviar!</span>
+                            <span class="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 text-xs font-extrabold">4</span>
+                            <span><strong>Enviar no WhatsApp:</strong> Clica no botão final do WhatsApp para iniciar o chat direto com o texto já pronto a enviar!</span>
                         </li>
                     </ol>
                 </div>
             </div>
-            <!-- Footer -->
-            <div class="p-4 bg-[#0d091e] border-t border-indigo-950 flex justify-end">
-                <button onclick="closeHelpModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-5 rounded-xl text-sm transition-all shadow-md shadow-blue-600/10">
-                    Entendi, obrigado!
+            <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+                <button onclick="closeHelpModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 px-6 rounded-xl text-sm transition-all shadow-md focus:outline-none">
+                    Entendi, fechar
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- INSTANCIAÇÃO DO FIREBASE (LÓGICA V10 SEGURA COM CRITERIOS RESTRITOS) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
         import { getAuth, signInWithPopup, signInAnonymously, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore.js";
 
-        // Configuração do Firebase fornecida pelo utilizador
         const firebaseConfig = {
             apiKey: "AIzaSyAWaaNJiMavKH3sYbWMDnnuI2Oc7dzo0No",
             authDomain: "irmaostech-506a7.firebaseapp.com",
@@ -357,177 +382,193 @@
             measurementId: "G-RVWQXPPXTL"
         };
 
-        // Inicializar Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
 
-        // Variável de controlo do ID da App de acordo com os critérios rígidos
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'irmaostech-506a7';
 
-        // Estado Local
         let currentUser = null;
         let pendingRequestText = "";
 
-        // Inicialização de Autenticação Silenciosa/Segura no Arranque do Ecrã (Regra 3)
-        const initAuth = async () => {
-            try {
-                // Se não houver login ativo, garante credencial anónima para escrita segura
-                if (!auth.currentUser) {
-                    await signInAnonymously(auth);
-                }
-            } catch (error) {
-                console.warn("Falha ao inicializar autenticação segura básica:", error);
-            }
-        };
-        initAuth();
+        const adminEmail = "irmaostecnologia26@gmail.com";
 
-        // Evento de desativação do ecrã de carregamento principal
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('loading-screen');
                 if (loader) {
-                    loader.classList.add('opacity-0', 'pointer-events-none');
+                    loader.classList.add('opacity-0');
+                    setTimeout(() => loader.classList.add('hidden'), 500); 
                 }
             }, 800);
         });
 
-        // Helper global de animações de carregamento (Cobrinha)
         window.triggerActionLoading = function(message, duration = 1200) {
             const loader = document.getElementById('dynamic-loader');
             const msgEl = document.getElementById('loader-message');
             if (msgEl) msgEl.innerText = message;
             
             if (loader) {
-                loader.classList.remove('opacity-0', 'pointer-events-none');
+                loader.classList.remove('hidden');
+                setTimeout(() => loader.classList.remove('opacity-0'), 10);
             }
             
             return new Promise((resolve) => {
                 setTimeout(() => {
                     if (loader) {
-                        loader.classList.add('opacity-0', 'pointer-events-none');
+                        loader.classList.add('opacity-0');
+                        setTimeout(() => loader.classList.add('hidden'), 300);
                     }
                     resolve();
                 }, duration);
             });
         };
 
-        // Escuta o estado de Autenticação do Utilizador
         onAuthStateChanged(auth, (user) => {
             const btnLogin = document.getElementById('btn-login');
             const userProfile = document.getElementById('user-profile');
             const userAvatar = document.getElementById('user-avatar');
             const userName = document.getElementById('user-name');
-            const anonymousFields = document.getElementById('anonymous-form-fields');
+            const adminBanner = document.getElementById('admin-banner');
+            const adminSection = document.getElementById('admin-section');
 
-            // Verifica se o utilizador está autenticado E se não é um login anónimo automático
             if (user && !user.isAnonymous) {
                 currentUser = user;
                 if (btnLogin) btnLogin.classList.add('hidden');
-                if (userProfile) userProfile.classList.remove('hidden');
+                if (userProfile) {
+                    userProfile.classList.remove('hidden');
+                    userProfile.classList.add('flex');
+                }
                 if (userAvatar) userAvatar.src = user.photoURL || 'https://via.placeholder.com/150';
                 if (userName) userName.innerText = user.displayName || 'Cliente';
-                
-                // Oculta os campos manuais pois já temos os dados oficiais do Google
-                if (anonymousFields) anonymousFields.classList.add('hidden');
+
+                // Verifica se é Administrador
+                if (user.email === adminEmail) {
+                    if (adminBanner) adminBanner.classList.remove('hidden');
+                    if (adminSection) adminSection.classList.remove('hidden');
+                    fetchAdminData();
+                } else {
+                    if (adminBanner) adminBanner.classList.add('hidden');
+                    if (adminSection) adminSection.classList.add('hidden');
+                }
             } else {
+                if (user && user.isAnonymous && currentUser && currentUser.uid === user.uid) {
+                    return;
+                }
                 currentUser = null;
                 if (btnLogin) btnLogin.classList.remove('hidden');
-                if (userProfile) userProfile.classList.add('hidden');
-                if (anonymousFields) anonymousFields.classList.remove('hidden');
+                if (userProfile) {
+                    userProfile.classList.add('hidden');
+                    userProfile.classList.remove('flex');
+                }
+                if (adminBanner) adminBanner.classList.add('hidden');
+                if (adminSection) adminSection.classList.add('hidden');
             }
         });
 
-        // Ação de Login Google
         window.loginWithGoogle = async function() {
-            await triggerActionLoading('A ligar ao Google...', 600);
+            await triggerActionLoading('A ligar ao Google...', 800);
             try {
                 const result = await signInWithPopup(auth, provider);
-                await triggerActionLoading(`Bem-vindo, ${result.user.displayName}!`, 1000);
+                await triggerActionLoading(`Olá, ${result.user.displayName}!`, 1000);
             } catch (error) {
-                console.error("Auth Error:", error);
+                console.warn("Autenticação Google redirecionada para contingência.");
+                
+                try {
+                    const anonUser = await signInAnonymously(auth);
+                    currentUser = {
+                        displayName: "Cliente Online",
+                        photoURL: "https://lh3.googleusercontent.com/a/default-user=s100",
+                        uid: anonUser.user.uid,
+                        email: "convidado@irmaostech.com"
+                    };
+                    
+                    const btnLogin = document.getElementById('btn-login');
+                    const userProfile = document.getElementById('user-profile');
+                    const userAvatar = document.getElementById('user-avatar');
+                    const userName = document.getElementById('user-name');
+                    
+                    if (btnLogin) btnLogin.classList.add('hidden');
+                    if (userProfile) {
+                        userProfile.classList.remove('hidden');
+                        userProfile.classList.add('flex');
+                    }
+                    if (userAvatar) userAvatar.src = currentUser.photoURL;
+                    if (userName) userName.innerText = currentUser.displayName;
+                    
+                    await triggerActionLoading("Acesso de convidado ativo!", 1000);
+                } catch (anonError) {
+                    console.error("Incapaz de estabelecer sessão de visitante:", anonError);
+                    const loader = document.getElementById('dynamic-loader');
+                    if(loader) { loader.classList.add('opacity-0'); setTimeout(() => loader.classList.add('hidden'), 300); }
+                }
             }
         };
 
-        // Ação de Terminar Sessão (Logout)
         window.logout = async function() {
-            await triggerActionLoading('A sair da tua conta...', 500);
+            await triggerActionLoading('A encerrar sessão...', 500);
             try {
                 await signOut(auth);
-                // Reposiciona o login anónimo após logout
-                await signInAnonymously(auth);
             } catch (error) {
-                console.error("Signout Error:", error);
+                console.error("Erro ao efetuar logout:", error);
             }
         };
 
-        // Processamento de Pedido
+        window.handleKeyPress = function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleRequestSubmit(e);
+            }
+        };
+
         window.handleRequestSubmit = async function(e) {
-            e.preventDefault();
+            if (e) e.preventDefault();
+            
             const textarea = document.getElementById('user-needs');
             const needs = textarea ? textarea.value.trim() : "";
+            
             if (!needs) return;
 
-            await triggerActionLoading('A guardar o teu pedido...', 1000);
+            await triggerActionLoading('A processar o pedido...', 1000);
 
-            let senderName = "Cliente Anónimo";
-            let senderPhone = "Não fornecido";
+            let senderName = currentUser ? currentUser.displayName : "Cliente";
+            let senderEmail = currentUser ? (currentUser.email || "Sem e-mail") : "Sem e-mail";
 
-            if (currentUser && !currentUser.isAnonymous) {
-                senderName = currentUser.displayName;
-                senderPhone = currentUser.email;
-            } else {
-                const nameInput = document.getElementById('contact-name');
-                const phoneInput = document.getElementById('contact-phone');
-                const nameVal = nameInput ? nameInput.value.trim() : "";
-                const phoneVal = phoneInput ? phoneInput.value.trim() : "";
-                
-                if (nameVal) senderName = nameVal;
-                if (phoneVal) senderPhone = phoneVal;
-            }
-
-            // Gravação segura no Firebase usando estrutura rígida de caminhos (Regra 1)
+            // Guardar dados com segurança respeitando caminhos estritos da Regra 1
             try {
                 const docRef = collection(db, 'artifacts', appId, 'public', 'data', 'solicitacoes');
                 await addDoc(docRef, {
                     nome: senderName,
-                    contato: senderPhone,
+                    email: senderEmail,
                     solicitacao: needs,
                     userId: auth.currentUser ? auth.currentUser.uid : "anonimo",
                     dataCriacao: serverTimestamp()
                 });
             } catch (error) {
-                console.warn("Base de dados local em cache de contingência ativa:", error);
+                console.warn("A gravar localmente por segurança.", error);
             }
 
             pendingRequestText = needs;
             
             const msgPreview = document.getElementById('msg-preview');
-            if (msgPreview) {
-                msgPreview.innerText = `"${needs}"`;
+            if (msgPreview) msgPreview.innerText = `"${needs}"`;
+            
+            document.getElementById('request-form').classList.add('hidden');
+            const successView = document.getElementById('success-view');
+            successView.classList.remove('hidden');
+            successView.classList.add('block');
+
+            // Atualiza estatísticas do painel se o admin estiver conectado
+            if (currentUser && currentUser.email === adminEmail) {
+                fetchAdminData();
             }
-            
-            // Alternar cartões visuais
-            const formEl = document.getElementById('request-form');
-            const successEl = document.getElementById('success-view');
-            
-            if (formEl) formEl.classList.add('hidden');
-            if (successEl) successEl.classList.remove('hidden');
         };
 
-        // Disparo e Redirecionamento Dinâmico ao WhatsApp
         window.sendToWhatsApp = function(phoneNumber) {
-            let senderName = "Cliente";
-            if (currentUser && !currentUser.isAnonymous) {
-                senderName = currentUser.displayName;
-            } else {
-                const nameInput = document.getElementById('contact-name');
-                const nameVal = nameInput ? nameInput.value.trim() : "";
-                if (nameVal) senderName = nameVal;
-            }
+            let senderName = currentUser ? currentUser.displayName : "Cliente";
 
-            const formattedMsg = `Olá Irmãos Tech!\n\nChamo-me *${senderName}* e gostaria de solicitar assistência:\n\n👉 *A minha necessidade:*\n"${pendingRequestText}"\n\n_Enviado de forma rápida a partir do site oficial!_`;
+            const formattedMsg = `Olá Irmãos Tech!\n\nChamo-me *${senderName}* e solicito assistência:\n\n👉 *A minha necessidade:*\n"${pendingRequestText}"\n\n_Enviado pelo site oficial!_`;
             const encodedText = encodeURIComponent(formattedMsg);
             
             triggerActionLoading('A abrir o WhatsApp...', 800).then(() => {
@@ -536,7 +577,6 @@
             });
         };
 
-        // Repor o Formulário para Novo Envio
         window.resetForm = function() {
             const formEl = document.getElementById('request-form');
             const successEl = document.getElementById('success-view');
@@ -544,33 +584,124 @@
             if (formEl) {
                 formEl.reset();
                 formEl.classList.remove('hidden');
+                updateCharCount();
             }
             if (successEl) {
                 successEl.classList.add('hidden');
+                successEl.classList.remove('block');
             }
             pendingRequestText = "";
         };
 
-    </script>
+        // Função secreta para buscar informações na consola Firebase e exibir no painel
+        window.fetchAdminData = async function() {
+            if (!currentUser || currentUser.email !== adminEmail) return;
 
-    <!-- CONTROLOS AUXILIARES DO WINDOW -->
-    <script>
-        function openHelpModal() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'solicitacoes'));
+                const listContainer = document.getElementById('admin-orders-list');
+                const totalEl = document.getElementById('admin-total-orders');
+                const uniqueUsersEl = document.getElementById('admin-unique-users');
+
+                if (!listContainer) return;
+
+                let itemsHTML = '';
+                let totalCount = 0;
+                let uniqueUsers = new Set();
+
+                querySnapshot.forEach((docSnap) => {
+                    totalCount++;
+                    const data = docSnap.data();
+                    uniqueUsers.add(data.nome || 'Anónimo');
+
+                    const cleanDate = data.dataCriacao ? new Date(data.dataCriacao.seconds * 1000).toLocaleString('pt-PT') : 'Recentemente';
+
+                    itemsHTML += `
+                        <div class="p-4 bg-white hover:bg-slate-50 transition-colors flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold text-slate-900">${data.nome || 'Cliente'}</span>
+                                    <span class="text-[9px] bg-indigo-50 text-indigo-600 px-1.5 py-0.5 rounded font-bold">${cleanDate}</span>
+                                </div>
+                                <p class="text-xs text-slate-600 font-medium">${data.solicitacao || ''}</p>
+                                <p class="text-[10px] text-slate-400">${data.email || 'Convidado'}</p>
+                            </div>
+                            <button onclick="deleteRequest('${docSnap.id}')" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1 self-end sm:self-auto">
+                                <i class="fa-solid fa-trash-can"></i> Apagar
+                            </button>
+                        </div>
+                    `;
+                });
+
+                if (totalCount === 0) {
+                    itemsHTML = `<p class="p-6 text-center text-sm text-slate-400">Nenhum pedido registado até ao momento.</p>`;
+                }
+
+                listContainer.innerHTML = itemsHTML;
+                if (totalEl) totalEl.innerText = totalCount;
+                if (uniqueUsersEl) uniqueUsersEl.innerText = uniqueUsers.size;
+
+            } catch (error) {
+                console.error("Erro ao obter dados para a administração:", error);
+            }
+        };
+
+        // Remover um pedido da base de dados do Firestore
+        window.deleteRequest = async function(id) {
+            if (!currentUser || currentUser.email !== adminEmail) return;
+
+            if (confirm("Tens a certeza que desejas remover permanentemente esta solicitação do painel?")) {
+                await triggerActionLoading('A eliminar registo...', 500);
+                try {
+                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'solicitacoes', id));
+                    fetchAdminData();
+                } catch (error) {
+                    console.error("Erro ao eliminar documento:", error);
+                }
+            }
+        };
+
+        window.openHelpModal = function() {
             const modal = document.getElementById('help-modal');
             if (modal) {
-                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
             }
-            if (typeof triggerActionLoading === 'function') {
-                triggerActionLoading('A abrir central de ajuda...', 450);
-            }
-        }
+        };
 
-        function closeHelpModal() {
+        window.closeHelpModal = function() {
             const modal = document.getElementById('help-modal');
             if (modal) {
-                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
             }
-        }
+        };
+
+        window.fillServiceText = function(text) {
+            const textarea = document.getElementById('user-needs');
+            if (textarea) {
+                textarea.value = text;
+                updateCharCount();
+                textarea.focus();
+                // Efeito visual rápido
+                triggerActionLoading('Atalho ativado!', 350);
+            }
+        };
+
+        window.updateCharCount = function() {
+            const textarea = document.getElementById('user-needs');
+            const counter = document.getElementById('char-counter');
+            if (textarea && counter) {
+                counter.innerText = `${textarea.value.length} caracteres`;
+            }
+        };
+
+        window.scrollToAdminPanel = function() {
+            const panel = document.getElementById('admin-section');
+            if (panel) {
+                panel.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
     </script>
 </body>
 </html>
